@@ -9,7 +9,8 @@ from PyQt5.uic import loadUi
 
 
 class AppWindowViewmodel(QMainWindow):
-    def __init__(self):
+    def __init__(self, cursor):
         super(AppWindowViewmodel, self).__init__()
         loadUi('AppWindow.ui', self)
+        self.cursor = cursor
         
