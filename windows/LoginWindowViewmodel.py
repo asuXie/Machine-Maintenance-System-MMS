@@ -16,7 +16,9 @@ class LoginWindowViewmodel(QMainWindow):
         self.passwordField.setEchoMode(QtWidgets.QLineEdit.Password)
         self.wrongPasswordLabel.hide()
         self.loginButton.clicked.connect(self.loginFunction)
+        self.exitButton.clicked.connect(sys.exit)
         self.widget = widget
+
       
         
 
