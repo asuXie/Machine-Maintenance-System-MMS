@@ -11,18 +11,7 @@ from sqlite3 import Error
 conn = None
 
     
-try:
-    conn = sqlite3.connect('base.db')
-    print(sqlite3.version)
-except Error as e:
-    print(e)
 
-cur = conn.cursor()
-cur.execute("SELECT * FROM users")
-
-rows = cur.fetchall()
-for row in rows:
-    print(row)
 
 
 
@@ -37,7 +26,7 @@ app = QApplication(sys.argv)
 
 widget = QtWidgets.QStackedWidget()
 
-window = LoginWindowViewmodel.LoginWindowViewmodel(widget, cur)
+window = LoginWindowViewmodel.LoginWindowViewmodel(widget)
 
 
 widget.addWidget(window)
