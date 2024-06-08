@@ -15,7 +15,7 @@ class AddEmployeeViewmodel(QDialog):
         self.dialogAddEmployeeButton.clicked.connect(self.addEmployee)
         self.exitButton.clicked.connect(self.exitWindow)
 
-        print("Created")
+        
         self.show()
         
     def addEmployee(self):

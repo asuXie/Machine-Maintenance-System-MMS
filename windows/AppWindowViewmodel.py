@@ -41,10 +41,25 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setColumnWidth(1, 200)
         self.employeesTable.setColumnWidth(2, 200)
         self.employeesTable.setColumnWidth(3, 200)
+        self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
         self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
+        self.deleteEmployeeButton.clicked.connect(self.deleteEmployee)
+        
+        self.employeesTable.cellClicked.connect(self.getClickedCell)
+
+    def getClickedCell(self, row, column):
+        print('clicked!', row, column)
+        print(self.employeesTable.item(row, column).text())
+
+    def deleteEmployee(self):
+        
+        id = self.employeesTable.item(self.employeesTable.currentRow(), 0).text()
+        command = f"DELETE FROM employees WHERE workerID = {id}"
+        dbExecute(command)
+
 
 
        
@@ -53,11 +68,16 @@ class AppWindowViewmodel(QMainWindow):
     def showTime(self):
         time = datetime.now()
         self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
+    
+
+    ########################
+    ###EMPLOYEE FUNCTIONS###
+    ########################
 
     def loadEmployees(self):
         
         self.workers = dbExtract("employees", "*")
-        print(self.workers)
+        
         
         self.employeesTable.setRowCount(len(self.workers))
         for i in range(len(self.workers)):
@@ -74,10 +94,6 @@ class AppWindowViewmodel(QMainWindow):
    
         
 
-
-    ########################
-    ###EMPLOYEE FUNCTIONS###
-    ########################
 
     def addEmployeeWindow(self):
         self.addEmployee = AddEmployeeViewmodel.AddEmployeeViewmodel()
