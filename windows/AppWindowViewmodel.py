@@ -48,26 +48,9 @@ class AppWindowViewmodel(QMainWindow):
         self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
         self.deleteEmployeeButton.clicked.connect(self.deleteEmployee)
         
-        self.employeesTable.cellClicked.connect(self.getClickedCell)
+    
 
-    def getClickedCell(self, row, column):
-        print('clicked!', row, column)
-        print(self.employeesTable.item(row, column).text())
-
-    def deleteEmployee(self):
-        
-        id = self.employeesTable.item(self.employeesTable.currentRow(), 0).text()
-        command = f"DELETE FROM employees WHERE workerID = {id}"
-        dbExecute(command)
-
-
-
-       
-        self.loadEmployees()
-
-    def showTime(self):
-        time = datetime.now()
-        self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
+    
     
 
     ########################
@@ -91,7 +74,16 @@ class AppWindowViewmodel(QMainWindow):
                         self.employeesTable.setItem(i, j, QtWidgets.QTableWidgetItem("No"))
         self.employeesTable.resizeColumnsToContents()
 
-   
+    def deleteEmployee(self):
+        
+        id = self.employeesTable.item(self.employeesTable.currentRow(), 0).text()
+        command = f"DELETE FROM employees WHERE workerID = {id}"
+        dbExecute(command)
+        self.loadEmployees()
+
+    def showTime(self):
+        time = datetime.now()
+        self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
         
 
 
