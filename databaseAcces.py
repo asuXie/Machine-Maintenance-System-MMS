@@ -25,3 +25,37 @@ def extract_users():
 
     return rows
 
+def dbExtract(table, column):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT {column} FROM {table}")
+    rows = cursor.fetchall()
+    conn.commit()
+    conn.close()
+
+    return rows
+
+def dbInsert(table, values):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    cursor.execute(f"INSERT INTO {table} VALUES {values}")
+    conn.commit()
+    conn.close()
+
+def dbExecute(command):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    cursor.execute(command)
+    conn.commit()
+    conn.close()
+
+def dbTableSize(table):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT COUNT(*) FROM {table}")
+    size = cursor.fetchall()
+    conn.commit()
+    conn.close()
+
+    return size
+

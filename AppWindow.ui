@@ -37,7 +37,7 @@ background-color: rgb(96, 96, 96);</string>
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -228,7 +228,7 @@ background-color: rgb(96, 96, 96);</string>
        <number>5</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -532,6 +532,69 @@ color: rgb(255, 159, 102);
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QTableWidget" name="employeesTable">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>10</y>
+        <width>791</width>
+        <height>661</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Verdana&quot;;
+color: rgb(255, 159, 102);</string>
+      </property>
+      <column>
+       <property name="text">
+        <string>Worker ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Surname</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Operator</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="refreshEmployeesButton">
+      <property name="geometry">
+       <rect>
+        <x>1050</x>
+        <y>10</y>
+        <width>41</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
