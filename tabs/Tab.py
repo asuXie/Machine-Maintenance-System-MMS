@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from datetime import datetime
-from databaseAcces import dbExecute, dbExtract
+from databaseAcces import dbExecute, dbExtract, dbGetID
 from tabs import Tab
 from windows import AddEmployeeViewmodel
 import dbEnum
@@ -34,8 +34,11 @@ class Tab():
 
     def deleteRecord(self):
         
+        
         id = self.table.item(self.table.currentRow(), 0).text()
-        command = f"DELETE FROM employees WHERE workerID = {id}"
+        getID = dbGetID(self.dbName)
+        command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
+        
         dbExecute(command)
         self.loadTab()
     

@@ -59,3 +59,14 @@ def dbTableSize(table):
 
     return size
 
+def dbGetID(table):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    command = f"PRAGMA table_info({table})"
+    cursor.execute(command)
+    rows = cursor.fetchall()
+    conn.commit()
+    conn.close()
+
+    return rows
+

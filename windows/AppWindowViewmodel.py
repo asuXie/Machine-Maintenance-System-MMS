@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from datetime import datetime
-from windows import AddEmployeeViewmodel
+from windows import AddEmployeeViewmodel, AddMachineViewmodel
 from databaseAcces import dbExecute, dbExtract
 from tabs import Tab
 
@@ -22,12 +22,9 @@ class AppWindowViewmodel(QMainWindow):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.showTime)
         self.timer.start(1000)
-        self.showTime()
-
-        #refreshing button variables
         
-        self.employeesSize = 0
         
+        #tab Managers initialization
         self.employeeTabManager = Tab.Tab(self.employeesTable)
         self.machineTabManager = Tab.Tab(self.machineTable)
         
@@ -48,8 +45,7 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
         self.mainTab.currentChanged.connect(self.tabChanged)
-        #get table name
-        
+     
 
 
 
@@ -57,8 +53,11 @@ class AppWindowViewmodel(QMainWindow):
 
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
-        #self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
+        
         self.deleteEmployeeButton.clicked.connect(self.employeeTabManager.deleteRecord)
+
+        self.addMachineButton.clicked.connect(self.addMachineWindow)
+        self.deleteMachineButton.clicked.connect(self.machineTabManager.deleteRecord)
         
         
         
@@ -79,17 +78,15 @@ class AppWindowViewmodel(QMainWindow):
     ###EMPLOYEE FUNCTIONS###
     ########################
 
-
-    
-
-    
-        
-
-
     def addEmployeeWindow(self):
-        self.addEmployee = AddEmployeeViewmodel.AddEmployeeViewmodel()
+        self.addEmployee = AddEmployeeViewmodel.AddEmployeeViewmodel(self.employeeTabManager)
         self.addEmployee.show()
         self.addEmployee.exec_()
+
+    def addMachineWindow(self):
+        self.addMachine = AddMachineViewmodel.AddMachineViewmodel(self.machineTabManager)
+        self.addMachine.show()
+        self.addMachine.exec_()
         
   
         

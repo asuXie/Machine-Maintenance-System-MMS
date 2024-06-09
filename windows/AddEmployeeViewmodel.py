@@ -10,11 +10,12 @@ from databaseAcces import create_connection, extract_users, dbExecute
 
  
 class AddEmployeeViewmodel(QDialog):
-    def __init__(self):
+    def __init__(self, manager):
         super(AddEmployeeViewmodel, self).__init__()
         loadUi('AddEmployeeWindow.ui', self)
         self.dialogAddEmployeeButton.clicked.connect(self.addEmployee)
         self.exitButton.clicked.connect(self.exitWindow)
+        self.manager = manager
 
         
         self.show()
@@ -22,6 +23,7 @@ class AddEmployeeViewmodel(QDialog):
     def addEmployee(self):
         command = f"INSERT INTO employees (name, surname, isOperator) VALUES ('{self.addEmployeeNameField.text()}', '{self.addEmployeeSurnameField.text()}', False)"
         dbExecute(command)
+        self.manager.loadTab()
         self.close()
 
     def exitWindow(self):
