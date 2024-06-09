@@ -4,4 +4,5 @@ from enum import Enum
 
 class dbEnum(Enum):
     employeesTable = "employees"
+    machineTable = "machines"
     

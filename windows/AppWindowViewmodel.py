@@ -6,7 +6,7 @@ from PyQt5.QtCore import QTimer
 from datetime import datetime
 from windows import AddEmployeeViewmodel
 from databaseAcces import dbExecute, dbExtract
-from tabs import EmployeeTab
+from tabs import Tab
 
 
         
@@ -28,7 +28,10 @@ class AppWindowViewmodel(QMainWindow):
         
         self.employeesSize = 0
         
-
+        self.employeeTabManager = Tab.Tab(self.employeesTable)
+        self.machineTabManager = Tab.Tab(self.machineTable)
+        
+        
         #displaying table
         self.machineTable.setColumnWidth(0, 200)
         self.machineTable.setColumnWidth(1, 200)
@@ -45,56 +48,41 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
         self.mainTab.currentChanged.connect(self.tabChanged)
+        #get table name
+        
+
+
 
         
 
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
-        self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
-        self.deleteEmployeeButton.clicked.connect(self.deleteEmployee)
-        EmployeeTab.EmployeeTab(self.employeesTable)
+        #self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
+        self.deleteEmployeeButton.clicked.connect(self.employeeTabManager.deleteRecord)
+        
         
         
     
     def tabChanged(self, index):
             print(index)
             if index == 2:
-                self.loadEmployees()
+                self.employeeTabManager.loadTab()
+            elif index == 1:
+                self.machineTabManager.loadTab()
 
-    
+    def showTime(self):
+        time = datetime.now()
+        self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
     
 
     ########################
     ###EMPLOYEE FUNCTIONS###
     ########################
 
-    def loadEmployees(self):
-        
-        self.workers = dbExtract("employees", "*")
-        
-        
-        self.employeesTable.setRowCount(len(self.workers))
-        for i in range(len(self.workers)):
-            for j in range(4):
-                if j !=3:
-                    self.employeesTable.setItem(i, j, QtWidgets.QTableWidgetItem(str(self.workers[i][j])))
-                else:
-                    if self.workers[i][j] == 1:
-                        self.employeesTable.setItem(i, j, QtWidgets.QTableWidgetItem("Yes"))
-                    else:
-                        self.employeesTable.setItem(i, j, QtWidgets.QTableWidgetItem("No"))
-        self.employeesTable.resizeColumnsToContents()
 
-    def deleteEmployee(self):
-        
-        id = self.employeesTable.item(self.employeesTable.currentRow(), 0).text()
-        command = f"DELETE FROM employees WHERE workerID = {id}"
-        dbExecute(command)
-        self.loadEmployees()
+    
 
-    def showTime(self):
-        time = datetime.now()
-        self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
+    
         
 
 

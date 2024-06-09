@@ -9,10 +9,16 @@ from tabs import Tab
 from windows import AddEmployeeViewmodel
 import dbEnum
 
+
 class EmployeeTab():
+    
     def __init__(self, table):
+        
+
         self.employeesTable = table
-        print(dbEnum.dbEnum.employeesTable.value)
+        self.name = self.employeesTable.objectName()
+        #TODO LOADING BY KEY
+        print(dbEnum.dbEnum[self.name].value)
         self.loadEmployees()
 
 
