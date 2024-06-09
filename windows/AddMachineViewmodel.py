@@ -32,13 +32,17 @@ class AddMachineViewmodel(QDialog):
     def addMachine(self):
        selectedDate = self.calendarMachine.selectedDate()
        
-       date_tuple = selectedDate.getDate()
-       date_string = f"{date_tuple[0]}-{date_tuple[1]:02d}-{date_tuple[2]:02d}"
-       date_object = datetime.fromisoformat(date_string)
-       print(date_object)
+       dateTuple = selectedDate.getDate()
+
+       dateIso = datetime.isoformat(datetime(dateTuple[0], dateTuple[1], dateTuple[2]))
+       print(dateIso)
+       #make it only date
+       date_string = dateIso.split("T")[0]
+       print(date_string)
+       
        #print(self.machineModelField.text())
        #print(self.machineOperatorField.text())
-       command = f"INSERT INTO machine (model, reqMaintenance, operatorID) VALUES ('{self.machineModelField.text()}', {date_string}, {self.machineOperatorField.text()})"
+       command = f"INSERT INTO machine (model, reqMaintenance, operatorID) VALUES ('{self.machineModelField.text()}', '{date_string}', {self.machineOperatorField.text()})"
        print(command)
        dbExecute(command)
        self.manager.loadTab()
