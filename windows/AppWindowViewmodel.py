@@ -1,11 +1,12 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from datetime import datetime
 from windows import AddEmployeeViewmodel
 from databaseAcces import dbExecute, dbExtract
+from tabs import EmployeeTab
 
 
         
@@ -43,12 +44,22 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setColumnWidth(3, 200)
         self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
+        self.mainTab.currentChanged.connect(self.tabChanged)
+
+        
+
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
         self.refreshEmployeesButton.clicked.connect(self.loadEmployees)
         self.deleteEmployeeButton.clicked.connect(self.deleteEmployee)
+        EmployeeTab.EmployeeTab(self.employeesTable)
+        
         
     
+    def tabChanged(self, index):
+            print(index)
+            if index == 2:
+                self.loadEmployees()
 
     
     
