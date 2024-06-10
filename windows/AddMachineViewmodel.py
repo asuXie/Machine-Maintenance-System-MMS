@@ -15,7 +15,7 @@ class AddMachineViewmodel(QDialog):
     def __init__(self, manager):
         super(AddMachineViewmodel, self).__init__()
         loadUi('AddMachineWindow.ui', self)
-        #self.dialogAddEmployeeButton.clicked.connect(self.addEmployee)
+     
         self.exitButton.clicked.connect(self.exitWindow)
         self.manager = manager
 
@@ -31,17 +31,9 @@ class AddMachineViewmodel(QDialog):
         
     def addMachine(self):
        selectedDate = self.calendarMachine.selectedDate()
-       
        dateTuple = selectedDate.getDate()
-
        dateIso = datetime.isoformat(datetime(dateTuple[0], dateTuple[1], dateTuple[2]))
-       
-       #make it only date
        dateString = dateIso.split("T")[0]
-       
-       
-       #print(self.machineModelField.text())
-       #print(self.machineOperatorField.text())
        command = f"INSERT INTO machine (model, reqMaintenance, operatorID) VALUES ('{self.machineModelField.text()}', '{dateString}', {self.machineOperatorField.text()})"
        print(command)
        dbExecute(command)

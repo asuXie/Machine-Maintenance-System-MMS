@@ -75,7 +75,7 @@ class AppWindowViewmodel(QMainWindow):
     
 
     ########################
-    ###EMPLOYEE FUNCTIONS###
+    ###WINDOW   FUNCTIONS###
     ########################
 
     def addEmployeeWindow(self):
