@@ -11,7 +11,7 @@ from windows import AddEmployeeViewmodel
 import dbEnum
 
 
-class MaintenanceTab():
+class CurrentTasksTab():
     
     def __init__(self, table):
             
@@ -23,7 +23,7 @@ class MaintenanceTab():
     @override
     def loadTab(self):
         
-        self.content = dbExtract(f"{self.dbName}", "*", "WHERE doneDate > DATE('now')")
+        self.content = dbExtract(f"{self.dbName}", "*", "WHERE doneDate <= DATE('now')")
         if self.content != None:
             self.table.setRowCount(len(self.content))
             for i in range(len(self.content)):

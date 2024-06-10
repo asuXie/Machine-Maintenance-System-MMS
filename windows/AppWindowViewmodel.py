@@ -6,7 +6,7 @@ from PyQt5.QtCore import QTimer
 from datetime import datetime
 from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel
 from databaseAcces import dbExecute, dbExtract
-from tabs import Tab, MaintenanceTab
+from tabs import Tab, MaintenanceTab, CurrentTasksTab
 
 
 ####################
@@ -29,7 +29,9 @@ class AppWindowViewmodel(QMainWindow):
         #tab Managers initialization
         self.employeeTabManager = Tab.Tab(self.employeesTable)
         self.machineTabManager = Tab.Tab(self.machineTable)
-        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable)
+        self.plannedTasksTabManager = MaintenanceTab.MaintenanceTab(self.plannedTasksTable)
+        self.currentTasksTabManager = CurrentTasksTab.CurrentTasksTab(self.currentTasksTable)
+        self.partsTabManager = Tab.Tab(self.partsTable)
         
         
         
@@ -57,6 +59,9 @@ class AppWindowViewmodel(QMainWindow):
         self.deleteMachineButton.clicked.connect(self.machineTabManager.deleteRecord)
         self.mainTab.currentChanged.connect(self.tabChanged)
         self.addTaskButton.clicked.connect(self.addTaskWindow)
+        self.deleteTaskButton.clicked.connect(self.plannedTasksTabManager.deleteRecord)
+        self.taskDoneButton.clicked.connect(self.currentTasksTabManager.deleteRecord)
+        
         
         
         
@@ -69,6 +74,9 @@ class AppWindowViewmodel(QMainWindow):
                 self.machineTabManager.loadTab()
             elif index == 0:
                 self.plannedTasksTabManager.loadTab()
+                self.currentTasksTabManager.loadTab()
+            elif index == 3:
+                self.partsTabManager.loadTab()
 
     def showTime(self):
         time = datetime.now()
