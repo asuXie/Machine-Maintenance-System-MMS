@@ -12,7 +12,7 @@ import dbEnum
 
 class Tab():
     
-    def __init__(self, table):
+    def __init__(self, table = None):
         
         self.table = table
         self.content = None

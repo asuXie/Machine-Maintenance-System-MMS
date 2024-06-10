@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from datetime import datetime
-from windows import AddEmployeeViewmodel, AddMachineViewmodel
+from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel
 from databaseAcces import dbExecute, dbExtract
 from tabs import Tab, MaintenanceTab
 
@@ -32,6 +32,7 @@ class AppWindowViewmodel(QMainWindow):
         self.plannedTasksTabManager = MaintenanceTab.MaintenanceTab(self.plannedTasksTable)
         
         
+        
         #displaying table
         self.machineTable.setColumnWidth(0, 200)
         self.machineTable.setColumnWidth(1, 200)
@@ -55,6 +56,7 @@ class AppWindowViewmodel(QMainWindow):
         self.addMachineButton.clicked.connect(self.addMachineWindow)
         self.deleteMachineButton.clicked.connect(self.machineTabManager.deleteRecord)
         self.mainTab.currentChanged.connect(self.tabChanged)
+        self.addTaskButton.clicked.connect(self.addTaskWindow)
         
         
         
@@ -86,6 +88,11 @@ class AppWindowViewmodel(QMainWindow):
         self.addMachine = AddMachineViewmodel.AddMachineViewmodel(self.machineTabManager)
         self.addMachine.show()
         self.addMachine.exec_()
+
+    def addTaskWindow(self):
+        self.addTask = AddTaskViewmodel.AddTaskViewmodel(self.plannedTasksTabManager)
+        self.addTask.show()
+        self.addTask.exec_()
         
   
         

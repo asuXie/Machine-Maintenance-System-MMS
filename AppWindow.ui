@@ -27,17 +27,23 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(54, 54, 54);
-border-color: rgb(96, 96, 96);
-selection-color: rgb(0, 0, 0);
+     <string notr="true">
+color: rgb(96, 96, 96);
 font: 16pt &quot;Verdana&quot;;
-background-color: rgb(96, 96, 96);</string>
+
+
+QTabBar::tab {
+ background-color: rgb(96, 96, 96);
+ color: rgb(96, 96, 96);
+
+}
+</string>
     </property>
     <property name="tabShape">
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -218,6 +224,11 @@ font: 16pt &quot;Verdana&quot;;</string>
         <height>401</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Verdana&quot;;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
      <widget class="QTableWidget" name="currentTasksTable">
       <property name="geometry">
@@ -227,6 +238,11 @@ font: 16pt &quot;Verdana&quot;;</string>
         <width>671</width>
         <height>151</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Verdana&quot;;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -261,7 +277,8 @@ font: 16pt &quot;Verdana&quot;;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt &quot;Verdana&quot;;
-color: rgb(255, 159, 102);</string>
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
       </property>
       <column>
        <property name="text">
@@ -325,7 +342,8 @@ background-color: rgb(181, 181, 181);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt &quot;Verdana&quot;;
-color: rgb(255, 159, 102);</string>
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
       </property>
       <column>
        <property name="text">
@@ -595,7 +613,9 @@ color: rgb(255, 159, 102);
       </property>
       <property name="styleSheet">
        <string notr="true">font: 12pt &quot;Verdana&quot;;
-color: rgb(255, 159, 102);</string>
+color: rgb(0, 0, 0);
+
+background-color: rgb(255, 255, 255);</string>
       </property>
       <column>
        <property name="text">
@@ -670,6 +690,124 @@ background-color: rgb(181, 181, 181);</string>
       </property>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>191</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="deleteTaskButton_2">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+         </property>
+         <property name="text">
+          <string>Delete part</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="addTaskButton_2">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+         </property>
+         <property name="text">
+          <string>Add part</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="editTaskButton_2">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+         </property>
+         <property name="text">
+          <string>Edit part</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTableWidget" name="plannedTasksTable2_2">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>10</y>
+        <width>671</width>
+        <height>661</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Verdana&quot;;
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
