@@ -25,10 +25,10 @@ def extract_users():
 
     return rows
 
-def dbExtract(table, column):
+def dbExtract(table, column, argument = ""):
     conn = create_connection("base.db")
     cursor = conn.cursor()
-    cursor.execute(f"SELECT {column} FROM {table}")
+    cursor.execute(f"SELECT {column} FROM {table} {argument}")
     rows = cursor.fetchall()
     conn.commit()
     conn.close()

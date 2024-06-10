@@ -6,10 +6,12 @@ from PyQt5.QtCore import QTimer
 from datetime import datetime
 from windows import AddEmployeeViewmodel, AddMachineViewmodel
 from databaseAcces import dbExecute, dbExtract
-from tabs import Tab
+from tabs import Tab, MaintenanceTab
 
 
-        
+####################
+#  INITIALIZATION  #
+####################        
         
 
 
@@ -27,6 +29,7 @@ class AppWindowViewmodel(QMainWindow):
         #tab Managers initialization
         self.employeeTabManager = Tab.Tab(self.employeesTable)
         self.machineTabManager = Tab.Tab(self.machineTable)
+        self.plannedTasksTabManager = MaintenanceTab.MaintenanceTab(self.plannedTasksTable)
         
         
         #displaying table
@@ -44,20 +47,14 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setColumnWidth(3, 200)
         self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
 
-        self.mainTab.currentChanged.connect(self.tabChanged)
-     
-
-
-
         
 
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
-        
         self.deleteEmployeeButton.clicked.connect(self.employeeTabManager.deleteRecord)
-
         self.addMachineButton.clicked.connect(self.addMachineWindow)
         self.deleteMachineButton.clicked.connect(self.machineTabManager.deleteRecord)
+        self.mainTab.currentChanged.connect(self.tabChanged)
         
         
         
@@ -68,6 +65,8 @@ class AppWindowViewmodel(QMainWindow):
                 self.employeeTabManager.loadTab()
             elif index == 1:
                 self.machineTabManager.loadTab()
+            elif index == 0:
+                self.plannedTasksTabManager.loadTab()
 
     def showTime(self):
         time = datetime.now()

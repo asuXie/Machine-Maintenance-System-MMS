@@ -10,7 +10,12 @@ from sqlite3 import Error
 
 
 
+#awarie
+#green
+#yellow
+#red
 
+#codzienne/okresowe
 
 
         

@@ -76,37 +76,8 @@ background-color: rgb(181, 181, 181);</string>
        <property name="spacing">
         <number>0</number>
        </property>
-       <item row="4" column="0">
-        <widget class="QPushButton" name="editProcessButton">
-         <property name="maximumSize">
-          <size>
-           <width>120</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-QPushButton{
-color: rgb(54, 54, 54);
-border-color: rgb(96, 96, 96);
-selection-color: rgb(0, 0, 0);
-font: 10pt &quot;Verdana&quot;;
-border-radius: 10px;
-background-color: rgb(181, 181, 181);
-
-}
-
-QPushButton:hover {
-color: rgb(255, 159, 102);
-}</string>
-         </property>
-         <property name="text">
-          <string>Edit process</string>
-         </property>
-        </widget>
-       </item>
        <item row="3" column="0">
-        <widget class="QPushButton" name="deleteProcessButton">
+        <widget class="QPushButton" name="deleteTaskButton">
          <property name="maximumSize">
           <size>
            <width>120</width>
@@ -130,12 +101,12 @@ color: rgb(255, 159, 102);
 }</string>
          </property>
          <property name="text">
-          <string>Delete process</string>
+          <string>Delete task</string>
          </property>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="addProcessButton">
+        <widget class="QPushButton" name="addTaskButton">
          <property name="maximumSize">
           <size>
            <width>120</width>
@@ -160,7 +131,36 @@ color: rgb(255, 159, 102);
 }</string>
          </property>
          <property name="text">
-          <string>Add process</string>
+          <string>Add task</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QPushButton" name="editTaskButton">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+         </property>
+         <property name="text">
+          <string>Edit task</string>
          </property>
         </widget>
        </item>
@@ -196,17 +196,20 @@ background-color: rgb(181, 181, 181);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(54, 54, 54);
+       <string notr="true">
 border-color: rgb(96, 96, 96);
 selection-color: rgb(0, 0, 0);
-font: 16pt &quot;Verdana&quot;;
-background-color: rgb(96, 96, 96);</string>
+
+background-color: rgb(96, 96, 96);
+
+color: rgb(255, 255, 255); 
+font: 16pt &quot;Verdana&quot;;</string>
       </property>
       <property name="text">
-       <string>Current Maintenance</string>
+       <string>Current Tasks</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="plannedProcess">
+     <widget class="QTableWidget" name="plannedTasksTable2">
       <property name="geometry">
        <rect>
         <x>240</x>
@@ -216,7 +219,7 @@ background-color: rgb(96, 96, 96);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QTableWidget" name="processToDo">
+     <widget class="QTableWidget" name="currentTasksTable">
       <property name="geometry">
        <rect>
         <x>240</x>
@@ -236,15 +239,55 @@ background-color: rgb(96, 96, 96);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(54, 54, 54);
+       <string notr="true">
 border-color: rgb(96, 96, 96);
 selection-color: rgb(0, 0, 0);
-font: 16pt &quot;Verdana&quot;;
-background-color: rgb(96, 96, 96);</string>
+background-color: rgb(96, 96, 96);
+color: rgb(255, 255, 255); 
+font: 16pt &quot;Verdana&quot;;</string>
       </property>
       <property name="text">
        <string>Planned tasks</string>
       </property>
+     </widget>
+     <widget class="QTableWidget" name="plannedTasksTable">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>270</y>
+        <width>541</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Verdana&quot;;
+color: rgb(255, 159, 102);</string>
+      </property>
+      <column>
+       <property name="text">
+        <string>Machine ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Model</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Required Maintenance</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Is Running</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Operator</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

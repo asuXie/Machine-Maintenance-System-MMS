@@ -5,7 +5,7 @@ from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer, QDate
 from datetime import date, datetime
 
-from databaseAcces import create_connection, extract_users, dbExecute
+from databaseAcces import dbExecute
 
 #from main import widget
 
