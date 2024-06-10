@@ -29,7 +29,7 @@ class AppWindowViewmodel(QMainWindow):
         #tab Managers initialization
         self.employeeTabManager = Tab.Tab(self.employeesTable)
         self.machineTabManager = Tab.Tab(self.machineTable)
-        self.plannedTasksTabManager = MaintenanceTab.MaintenanceTab(self.plannedTasksTable)
+        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable)
         
         
         

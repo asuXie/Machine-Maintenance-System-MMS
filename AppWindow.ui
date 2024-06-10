@@ -43,7 +43,7 @@ QTabBar::tab {
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -215,12 +215,12 @@ font: 16pt &quot;Verdana&quot;;</string>
        <string>Current Tasks</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="plannedTasksTable2">
+     <widget class="QTableWidget" name="plannedTasksTable">
       <property name="geometry">
        <rect>
         <x>240</x>
         <y>270</y>
-        <width>671</width>
+        <width>771</width>
         <height>401</height>
        </rect>
       </property>
@@ -229,6 +229,41 @@ font: 16pt &quot;Verdana&quot;;</string>
 color: rgb(0, 0, 0);
 background-color: rgb(255, 255, 255);</string>
       </property>
+      <column>
+       <property name="text">
+        <string>Task ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Type</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Machine ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Description</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Created</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>End </string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Part</string>
+       </property>
+      </column>
      </widget>
      <widget class="QTableWidget" name="currentTasksTable">
       <property name="geometry">
@@ -265,46 +300,6 @@ font: 16pt &quot;Verdana&quot;;</string>
       <property name="text">
        <string>Planned tasks</string>
       </property>
-     </widget>
-     <widget class="QTableWidget" name="plannedTasksTable">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>270</y>
-        <width>541</width>
-        <height>391</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Verdana&quot;;
-color: rgb(0, 0, 0);
-background-color: rgb(255, 255, 255);</string>
-      </property>
-      <column>
-       <property name="text">
-        <string>Machine ID</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Model</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Required Maintenance</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Is Running</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Operator</string>
-       </property>
-      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
