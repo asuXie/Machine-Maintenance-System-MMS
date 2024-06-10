@@ -98,7 +98,7 @@ class AppWindowViewmodel(QMainWindow):
         self.addMachine.exec_()
 
     def addTaskWindow(self):
-        self.addTask = AddTaskViewmodel.AddTaskViewmodel(self.plannedTasksTabManager)
+        self.addTask = AddTaskViewmodel.AddTaskViewmodel(self.plannedTasksTabManager, self.currentTasksTabManager)
         self.addTask.show()
         self.addTask.exec_()
         

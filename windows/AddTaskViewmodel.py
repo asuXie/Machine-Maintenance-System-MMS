@@ -11,12 +11,13 @@ from databaseAcces import dbExecute, dbExtract
 
  
 class AddTaskViewmodel(QDialog):
-    def __init__(self, manager):
+    def __init__(self, manager, secondManager):
         super(AddTaskViewmodel, self).__init__()
         loadUi('AddTaskWindow.ui', self)
         self.exitButton.clicked.connect(self.exitWindow)
         self.dialogAddTaskButton.clicked.connect(self.addTask)
         self.manager = manager
+        self.secondManager = secondManager
         self.setTypeCombo()
         self.setMachinesCombo()
         self.setPartsCombo()
@@ -38,6 +39,7 @@ class AddTaskViewmodel(QDialog):
         command = f"INSERT INTO tasks (type, machineID, part, description, doneDate) VALUES ('{self.typeCombo.currentText()}', {int(self.machineCombo.currentText())}, '{self.partsCombo.currentText()}', '{self.descriptionField.toPlainText()}', '{dateString}')"
         dbExecute(command)
         self.manager.loadTab()
+        self.secondManager.loadTab()
         self.close()
 
     def exitWindow(self):
