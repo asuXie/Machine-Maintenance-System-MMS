@@ -25,6 +25,7 @@ class AddEmployeeViewmodel(QDialog):
         dbExecute(command)
         self.manager.loadTab()
         self.close()
+        return True
 
     def exitWindow(self):
         

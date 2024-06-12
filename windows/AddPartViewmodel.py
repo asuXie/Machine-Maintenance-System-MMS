@@ -20,11 +20,17 @@ class AddPartViewmodel(QDialog):
         
         self.show()
         
-    def addPart(self):
+    def addPart(self, edit = False):
         command = f"INSERT INTO parts (name, price, stock) VALUES ('{self.dialogPartNameField.text()}', {float(self.dialogPartPriceField.text())}, {int(self.dialogPartStockField.value())})"
         dbExecute(command)
         self.manager.loadTab()
         self.close()
+
+        if edit:
+            self.manager.deleteRecord()
+
+        
+    
     def exitWindow(self):
         
         self.close()
