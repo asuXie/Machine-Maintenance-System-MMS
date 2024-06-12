@@ -29,8 +29,8 @@ class AppWindowViewmodel(QMainWindow):
         #tab Managers initialization
         self.employeeTabManager = Tab.Tab(self.employeesTable)
         self.machineTabManager = Tab.Tab(self.machineTable)
-        self.plannedTasksTabManager = MaintenanceTab.MaintenanceTab(self.plannedTasksTable)
-        self.currentTasksTabManager = CurrentTasksTab.CurrentTasksTab(self.currentTasksTable)
+        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')")
+        self.currentTasksTabManager = Tab.Tab(self.currentTasksTable, "WHERE doneDate <= DATE('now')")
         self.partsTabManager = Tab.Tab(self.partsTable)
         
         
@@ -67,15 +67,16 @@ class AppWindowViewmodel(QMainWindow):
         
     
     def tabChanged(self, index):
-            print(index)
-            if index == 2:
+        match index:
+            
+            case 2:
                 self.employeeTabManager.loadTab()
-            elif index == 1:
+            case 1:
                 self.machineTabManager.loadTab()
-            elif index == 0:
+            case 0:
                 self.plannedTasksTabManager.loadTab()
                 self.currentTasksTabManager.loadTab()
-            elif index == 3:
+            case 3:
                 self.partsTabManager.loadTab()
 
     def showTime(self):

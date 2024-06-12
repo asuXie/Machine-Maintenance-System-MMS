@@ -12,9 +12,10 @@ import dbEnum
 
 class Tab():
     
-    def __init__(self, table = None):
+    def __init__(self, table = None, arguments = ""):
         
         self.table = table
+        self.arguments = arguments
         self.content = None
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
         self.loadTab()
@@ -23,7 +24,7 @@ class Tab():
 
     def loadTab(self):
         
-        self.content = dbExtract(f"{self.dbName}", "*")
+        self.content = dbExtract(f"{self.dbName}", "*", f"{self.arguments}")
         if self.content != None:
             self.table.setRowCount(len(self.content))
             for i in range(len(self.content)):
