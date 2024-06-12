@@ -3,10 +3,11 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPixmap
 from datetime import datetime
-from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel
+from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel, AddPartViewmodel
 from databaseAcces import dbExecute, dbExtract
-from tabs import Tab, MaintenanceTab, CurrentTasksTab
+from tabs import Tab
 
 
 ####################
@@ -19,6 +20,8 @@ class AppWindowViewmodel(QMainWindow):
     def __init__(self):
         super(AppWindowViewmodel, self).__init__()
         loadUi('AppWindow.ui', self)
+        self.pixmap = QPixmap('LOGO INSIDE.png')
+        self.insideLabel.setPixmap(self.pixmap)
         
         #displaying time
         self.timer = QTimer(self)
@@ -48,7 +51,7 @@ class AppWindowViewmodel(QMainWindow):
         self.employeesTable.setColumnWidth(1, 200)
         self.employeesTable.setColumnWidth(2, 200)
         self.employeesTable.setColumnWidth(3, 200)
-        self.employeesTable.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+        
 
         
 
@@ -61,6 +64,8 @@ class AppWindowViewmodel(QMainWindow):
         self.addTaskButton.clicked.connect(self.addTaskWindow)
         self.deleteTaskButton.clicked.connect(self.plannedTasksTabManager.deleteRecord)
         self.taskDoneButton.clicked.connect(self.currentTasksTabManager.deleteRecord)
+        self.addPartButton.clicked.connect(self.addPartWindow)
+        self.deletePartButton.clicked.connect(self.partsTabManager.deleteRecord)
         
         
         
@@ -103,6 +108,10 @@ class AppWindowViewmodel(QMainWindow):
         self.addTask.show()
         self.addTask.exec_()
         
+    def addPartWindow(self):
+        self.addPart = AddPartViewmodel.AddPartViewmodel(self.partsTabManager)
+        self.addPart.show()
+        self.addPart.exec_()
   
         
          

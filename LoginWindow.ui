@@ -16,6 +16,9 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(54, 54, 54);</string>
   </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">loginButton:hover {color: black}</string>
@@ -144,13 +147,13 @@ font: 16pt &quot;Verdana&quot;;</string>
      <string>Password</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="logoLabel">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>980</x>
       <y>10</y>
-      <width>591</width>
-      <height>251</height>
+      <width>201</width>
+      <height>191</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -158,7 +161,13 @@ font: 16pt &quot;Verdana&quot;;</string>
 color: rgb(255, 159, 102);</string>
     </property>
     <property name="text">
-     <string>MMS</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="LOGO.qrc">:/LOGO2/LOGO MMS.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="wrongPasswordLabel">
@@ -196,6 +205,8 @@ font: 12pt &quot;Verdana&quot;;</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="LOGO.qrc"/>
+ </resources>
  <connections/>
 </ui>

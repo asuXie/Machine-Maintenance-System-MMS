@@ -73,7 +73,7 @@ background-color: rgb(181, 181, 181);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>240</y>
+        <y>270</y>
         <width>191</width>
         <height>201</height>
        </rect>
@@ -191,6 +191,25 @@ background-color: rgb(181, 181, 181);</string>
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
+      <widget class="QLabel" name="logoLabel2">
+       <property name="geometry">
+        <rect>
+         <x>620</x>
+         <y>-280</y>
+         <width>261</width>
+         <height>321</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="LOGO2.qrc">:/LogoInside/LOGO INSIDE.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -289,10 +308,10 @@ font: 16pt &quot;Verdana&quot;;</string>
      <widget class="QPushButton" name="taskDoneButton">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>90</y>
-        <width>120</width>
-        <height>60</height>
+        <x>520</x>
+        <y>10</y>
+        <width>111</width>
+        <height>21</height>
        </rect>
       </property>
       <property name="maximumSize">
@@ -400,7 +419,7 @@ background-color: rgb(181, 181, 181);</string>
      <widget class="QTableWidget" name="machineTable">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>240</x>
         <y>10</y>
         <width>791</width>
         <height>661</height>
@@ -671,7 +690,7 @@ color: rgb(255, 159, 102);
      <widget class="QTableWidget" name="employeesTable">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>240</x>
         <y>10</y>
         <width>791</width>
         <height>661</height>
@@ -703,35 +722,6 @@ background-color: rgb(255, 255, 255);</string>
         <string>Operator</string>
        </property>
       </column>
-     </widget>
-     <widget class="QPushButton" name="refreshEmployeesButton">
-      <property name="geometry">
-       <rect>
-        <x>1050</x>
-        <y>10</y>
-        <width>41</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-QPushButton{
-color: rgb(54, 54, 54);
-border-color: rgb(96, 96, 96);
-selection-color: rgb(0, 0, 0);
-font: 10pt &quot;Verdana&quot;;
-border-radius: 10px;
-background-color: rgb(181, 181, 181);
-
-}
-
-QPushButton:hover {
-color: rgb(255, 159, 102);
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -772,7 +762,7 @@ background-color: rgb(181, 181, 181);</string>
         <number>0</number>
        </property>
        <item row="3" column="0">
-        <widget class="QPushButton" name="deleteTaskButton_2">
+        <widget class="QPushButton" name="deletePartButton">
          <property name="maximumSize">
           <size>
            <width>120</width>
@@ -801,7 +791,7 @@ color: rgb(255, 159, 102);
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="addTaskButton_2">
+        <widget class="QPushButton" name="addPartButton">
          <property name="maximumSize">
           <size>
            <width>120</width>
@@ -831,7 +821,7 @@ color: rgb(255, 159, 102);
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QPushButton" name="editTaskButton_2">
+        <widget class="QPushButton" name="editPartButton">
          <property name="maximumSize">
           <size>
            <width>120</width>
@@ -864,9 +854,9 @@ color: rgb(255, 159, 102);
      <widget class="QTableWidget" name="partsTable">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>240</x>
         <y>10</y>
-        <width>321</width>
+        <width>600</width>
         <height>661</height>
        </rect>
       </property>
@@ -910,6 +900,28 @@ font: 16pt &quot;Verdana&quot;;</string>
      <string>TextLabel</string>
     </property>
    </widget>
+   <widget class="QLabel" name="insideLabel">
+    <property name="geometry">
+     <rect>
+      <x>1080</x>
+      <y>-20</y>
+      <width>121</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="LOGO2.qrc">:/LogoInside/LOGO INSIDE.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>insideLabel</zorder>
+   <zorder>mainTab</zorder>
+   <zorder>dateTimeLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -923,6 +935,8 @@ font: 16pt &quot;Verdana&quot;;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="LOGO2.qrc"/>
+ </resources>
  <connections/>
 </ui>

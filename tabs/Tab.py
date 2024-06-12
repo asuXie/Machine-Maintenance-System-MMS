@@ -18,6 +18,7 @@ class Tab():
         self.arguments = arguments
         self.content = None
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
+        self.table.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
         self.loadTab()
 
 
@@ -37,8 +38,13 @@ class Tab():
         
         
         id = self.table.item(self.table.currentRow(), 0).text()
+        print(id)
         getID = dbGetID(self.dbName)
-        command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
+        print(getID)
+        if self.dbName != "parts":
+            command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
+        else:
+            command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = '{id}'"
         
         dbExecute(command)
         self.loadTab()
