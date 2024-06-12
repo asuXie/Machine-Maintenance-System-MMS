@@ -128,16 +128,15 @@ class AppWindowViewmodel(QMainWindow):
         self.addEmployeeWindow()
 
     def editMachine(self):
-        self.machineTabManager.deleteRecord()
-        self.addMachineWindow()
+        self.machineTabManager.editRecord()
     
     def editTask(self):
         self.plannedTasksTabManager.deleteRecord()
         self.addTaskWindow()
         
     def editPart(self):
-
-        self.addPartWindow(True)
+        self.partsTabManager.editRecord()
+        
         
         
   ##edit to do

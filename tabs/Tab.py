@@ -17,8 +17,12 @@ class Tab():
         self.table = table
         self.arguments = arguments
         self.content = None
+        self.selectedRow = None
+        self.selectedColumn = None
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
-        self.table.setEditTriggers(QtWidgets.QTableWidget.NoEditTriggers)
+        #self.table.cellClicked.connect(self.cellWasClicked)
+        self.table.cellChanged.connect(self.editRecord)
+        
         self.loadTab()
 
 
@@ -38,9 +42,7 @@ class Tab():
         
         
         id = self.table.item(self.table.currentRow(), 0).text()
-        print(id)
         getID = dbGetID(self.dbName)
-        print(getID)
         if self.dbName != "parts":
             command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
         else:
@@ -48,6 +50,25 @@ class Tab():
         
         dbExecute(command)
         self.loadTab()
+
+    def editRecord(self):
+        row = self.table.currentRow()
+        column = self.table.currentColumn()
+        getID = dbGetID(self.dbName)
+        #update selected row
+        
+
+        command = f"UPDATE {self.dbName} SET {getID[column][1]} = '{self.table.item(row, column).text()}' WHERE {getID[0][1]} = '{self.table.item(row, 0).text()}'"
+        dbExecute(command)
+        self.loadTab()
+        
+
+    def unselectCell(self):
+        print("unselect")
+        self.selectedRow = None
+        self.selectedColumn = None
+        
+        
     
         
     
