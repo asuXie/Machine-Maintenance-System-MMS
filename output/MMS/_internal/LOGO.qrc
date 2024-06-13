@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>MMS LOGO.png</file>
+  </qresource>
+  <qresource prefix="LOGO2">
+    <file>LOGO MMS.png</file>
+  </qresource>
+</RCC>

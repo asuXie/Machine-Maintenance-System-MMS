@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="LogoInside">
+    <file>LOGO INSIDE.png</file>
+  </qresource>
+</RCC>
