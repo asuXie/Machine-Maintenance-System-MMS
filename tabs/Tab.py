@@ -21,7 +21,9 @@ class Tab():
         self.selectedColumn = None
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
         #self.table.cellClicked.connect(self.cellWasClicked)
-        self.table.cellChanged.connect(self.editRecord)
+        self.table.itemChanged.connect(self.editRecord)
+        
+        self.count = 0
         
         self.loadTab()
 
@@ -39,35 +41,30 @@ class Tab():
             self.table.resizeColumnsToContents()
 
     def deleteRecord(self):
-        
-        
-        id = self.table.item(self.table.currentRow(), 0).text()
-        getID = dbGetID(self.dbName)
-        if self.dbName != "parts":
-            command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
-        else:
-            command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = '{id}'"
-        
-        dbExecute(command)
-        self.loadTab()
+        if self.table.currentRow() != None or self.table.currentRow().text() != None:
+            id = self.table.item(self.table.currentRow(), 0).text()
+            getID = dbGetID(self.dbName)
+            if self.dbName != "parts":
+                command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = {id}"
+            else:
+                command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = '{id}'"
+            
+            dbExecute(command)
+            self.loadTab()
 
     def editRecord(self):
+       
         row = self.table.currentRow()
         column = self.table.currentColumn()
         getID = dbGetID(self.dbName)
-        #update selected row
+      
+        if self.table.item(row, column)!= None:
+            command = f"UPDATE {self.dbName} SET {getID[column][1]} = '{self.table.item(row, column).text()}' WHERE {getID[0][1]} = '{self.table.item(row, 0).text()}'"
+            dbExecute(command)
+            
+      
         
-
-        command = f"UPDATE {self.dbName} SET {getID[column][1]} = '{self.table.item(row, column).text()}' WHERE {getID[0][1]} = '{self.table.item(row, 0).text()}'"
-        dbExecute(command)
-        self.loadTab()
-        
-
-    def unselectCell(self):
-        print("unselect")
-        self.selectedRow = None
-        self.selectedColumn = None
-        
+   
         
     
         

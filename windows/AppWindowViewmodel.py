@@ -58,23 +58,20 @@ class AppWindowViewmodel(QMainWindow):
         #button initialization
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
         self.deleteEmployeeButton.clicked.connect(self.employeeTabManager.deleteRecord)
-        self.editEmployeeButton.clicked.connect(self.editEmployee)
 
         self.addMachineButton.clicked.connect(self.addMachineWindow)
         self.deleteMachineButton.clicked.connect(self.machineTabManager.deleteRecord)
-        self.editMachineButton.clicked.connect(self.editMachine)
 
         
         self.addTaskButton.clicked.connect(self.addTaskWindow) 
         self.deleteTaskButton.clicked.connect(self.plannedTasksTabManager.deleteRecord)
-        self.editTaskButton.clicked.connect(self.editTask)
         self.taskDoneButton.clicked.connect(self.currentTasksTabManager.deleteRecord)
         
         self.addPartButton.clicked.connect(self.addPartWindow)
         self.deletePartButton.clicked.connect(self.partsTabManager.deleteRecord)
-        self.editPartButton.clicked.connect(self.editPart)
 
         self.mainTab.currentChanged.connect(self.tabChanged)
+
         
         
         
@@ -121,22 +118,6 @@ class AppWindowViewmodel(QMainWindow):
         self.addPart = AddPartViewmodel.AddPartViewmodel(self.partsTabManager)
         self.addPart.show()
         self.addPart.exec_()
-
-    def editEmployee(self):
-        print("editEmployee")
-        self.employeeTabManager.deleteRecord()
-        self.addEmployeeWindow()
-
-    def editMachine(self):
-        self.machineTabManager.editRecord()
-    
-    def editTask(self):
-        self.plannedTasksTabManager.deleteRecord()
-        self.addTaskWindow()
-        
-    def editPart(self):
-        self.partsTabManager.editRecord()
-        
         
         
   ##edit to do
