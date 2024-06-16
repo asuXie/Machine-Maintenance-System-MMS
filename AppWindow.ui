@@ -790,36 +790,6 @@ color: rgb(255, 159, 102);
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="addPartButton">
-         <property name="maximumSize">
-          <size>
-           <width>120</width>
-           <height>60</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">
-
-QPushButton{
-color: rgb(54, 54, 54);
-border-color: rgb(96, 96, 96);
-selection-color: rgb(0, 0, 0);
-font: 10pt &quot;Verdana&quot;;
-border-radius: 10px;
-background-color: rgb(181, 181, 181);
-
-}
-
-QPushButton:hover {
-color: rgb(255, 159, 102);
-}</string>
-         </property>
-         <property name="text">
-          <string>Add part</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="0">
         <widget class="QPushButton" name="editPartButton">
          <property name="maximumSize">
@@ -846,6 +816,36 @@ color: rgb(255, 159, 102);
          </property>
          <property name="text">
           <string>Edit part</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="addPartButton">
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+         </property>
+         <property name="text">
+          <string>Add part</string>
          </property>
         </widget>
        </item>
@@ -880,6 +880,51 @@ background-color: rgb(255, 255, 255);</string>
         <string>Stock</string>
        </property>
       </column>
+     </widget>
+     <widget class="QLineEdit" name="partsNameSearch">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>340</y>
+        <width>189</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="partsNameSearchButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>380</y>
+        <width>120</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>120</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+QPushButton{
+color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);
+
+}
+
+QPushButton:hover {
+color: rgb(255, 159, 102);
+}</string>
+      </property>
+      <property name="text">
+       <string>Search by name</string>
+      </property>
      </widget>
     </widget>
    </widget>

@@ -24,6 +24,8 @@ class Tab():
         self.table.itemChanged.connect(self.editRecord)
         
         self.count = 0
+
+        self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
         
         self.loadTab()
 
@@ -31,7 +33,7 @@ class Tab():
 
     def loadTab(self):
         
-        self.content = dbExtract(f"{self.dbName}", "*", f"{self.arguments}")
+        
         if self.content != None:
             self.table.setRowCount(len(self.content))
             for i in range(len(self.content)):
@@ -61,6 +63,17 @@ class Tab():
         if self.table.item(row, column)!= None:
             command = f"UPDATE {self.dbName} SET {getID[column][1]} = '{self.table.item(row, column).text()}' WHERE {getID[0][1]} = '{self.table.item(row, 0).text()}'"
             dbExecute(command)
+
+    
+
+    def searchByName(self, name):
+        print(name)
+        self.content = dbExtract(f"{self.dbName}", "*", f" WHERE name LIKE '%{name}%'")
+        self.loadTab()
+                    
+            
+
+    
             
       
         

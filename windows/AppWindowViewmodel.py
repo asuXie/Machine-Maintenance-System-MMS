@@ -72,6 +72,8 @@ class AppWindowViewmodel(QMainWindow):
 
         self.mainTab.currentChanged.connect(self.tabChanged)
 
+        self.partsNameSearchButton.clicked.connect(self.searchParts)
+
         
         
         
@@ -118,6 +120,10 @@ class AppWindowViewmodel(QMainWindow):
         self.addPart = AddPartViewmodel.AddPartViewmodel(self.partsTabManager)
         self.addPart.show()
         self.addPart.exec_()
+        
+
+    def searchParts(self):
+        self.partsTabManager.searchByName(self.partsNameSearch.text())
         
         
   ##edit to do
