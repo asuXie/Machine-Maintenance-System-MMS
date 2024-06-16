@@ -239,7 +239,7 @@ font: 16pt &quot;Verdana&quot;;</string>
        <rect>
         <x>240</x>
         <y>270</y>
-        <width>771</width>
+        <width>701</width>
         <height>401</height>
        </rect>
       </property>
@@ -346,7 +346,7 @@ color: rgb(255, 159, 102);
        <rect>
         <x>240</x>
         <y>40</y>
-        <width>771</width>
+        <width>701</width>
         <height>161</height>
        </rect>
       </property>
@@ -391,6 +391,42 @@ background-color: rgb(255, 255, 255);</string>
        </property>
       </column>
      </widget>
+     <widget class="QComboBox" name="sortWhatComboMaintenance">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>270</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortByComboMaintenance">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>300</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -421,7 +457,7 @@ background-color: rgb(181, 181, 181);</string>
        <rect>
         <x>240</x>
         <y>10</y>
-        <width>791</width>
+        <width>601</width>
         <height>661</height>
        </rect>
       </property>
@@ -559,6 +595,42 @@ color: rgb(255, 159, 102);
        </item>
       </layout>
      </widget>
+     <widget class="QComboBox" name="sortWhatComboMachines">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortByComboMachines">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>40</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -692,7 +764,7 @@ color: rgb(255, 159, 102);
        <rect>
         <x>240</x>
         <y>10</y>
-        <width>791</width>
+        <width>571</width>
         <height>661</height>
        </rect>
       </property>
@@ -722,6 +794,42 @@ background-color: rgb(255, 255, 255);</string>
         <string>Operator</string>
        </property>
       </column>
+     </widget>
+     <widget class="QComboBox" name="sortWhatComboEmployees">
+      <property name="geometry">
+       <rect>
+        <x>820</x>
+        <y>10</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortByComboEmployees">
+      <property name="geometry">
+       <rect>
+        <x>820</x>
+        <y>40</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -994,7 +1102,7 @@ color: rgb(255, 159, 102);
        </item>
       </layout>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="sortWhatComboParts">
       <property name="geometry">
        <rect>
         <x>850</x>
@@ -1027,6 +1135,37 @@ font: 16pt &quot;Verdana&quot;;</string>
       </property>
       <property name="text">
        <string>Search by name:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>430</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortByComboParts">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>290</y>
+        <width>191</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(54, 54, 54);
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+font: 10pt &quot;Verdana&quot;;
+border-radius: 10px;
+background-color: rgb(181, 181, 181);</string>
       </property>
      </widget>
     </widget>

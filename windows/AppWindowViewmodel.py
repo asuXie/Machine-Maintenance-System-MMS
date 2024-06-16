@@ -30,11 +30,12 @@ class AppWindowViewmodel(QMainWindow):
         
         
         #tab Managers initialization
-        self.employeeTabManager = Tab.Tab(self.employeesTable, "", )
-        self.machineTabManager = Tab.Tab(self.machineTable)
-        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')")
+        self.employeeTabManager = Tab.Tab(self.employeesTable, "", self.tab.findChildren(QtWidgets.QComboBox))
+        self.machineTabManager = Tab.Tab(self.machineTable, "", self.tab_2.findChildren(QtWidgets.QComboBox))
+        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')", self.tab_4.findChildren(QtWidgets.QComboBox))
         self.currentTasksTabManager = Tab.Tab(self.currentTasksTable, "WHERE doneDate <= DATE('now')")
-        self.partsTabManager = Tab.Tab(self.partsTable, "", self.tab_3.findChildren(QtWidgets.QLabel))
+        
+        self.partsTabManager = Tab.Tab(self.partsTable, "", self.tab_3.findChildren(QtWidgets.QComboBox))
         
         
         
@@ -77,8 +78,8 @@ class AppWindowViewmodel(QMainWindow):
 
         #print(self.tab_3.findChildren(QtWidgets.QComboBox).objectName())
 
-        for name in self.tab_3.findChildren(QtWidgets.QLabel):
-            print(name.objectName())
+        #for name in self.tab_3.findChildren(QtWidgets.QLabel):
+        #    print(name.objectName())
 
 
         

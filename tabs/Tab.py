@@ -18,15 +18,17 @@ class Tab():
         self.arguments = arguments
         self.content = None
         self.childrenCombo = children 
-        self.childrenDict = self.childrenComboToDict()
-        print(self.childrenDict)
+        if self.childrenCombo != None:
+            self.childrenDict = self.childrenComboToDict()
+            for i in self.childrenDict:
+                print(self.childrenDict[i])
 
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
         #self.table.cellClicked.connect(self.cellWasClicked)
         self.table.itemChanged.connect(self.editRecord)
         self.sortASCOrder = None
-        
-        self.count = 0
+        self.tableColumns = None
+       
 
         self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
         
@@ -85,10 +87,29 @@ class Tab():
 
 
     def childrenComboToDict(self):
+        
         dict = {}
-        for i in range(self.childrenCombo.count()):
-            dict[self.childrenCombo.objectName(i)] = self.childrenCombo.itemData(i)
+        for i in range(len(self.childrenCombo)):
+            dict[self.childrenCombo[i].objectName()] = self.childrenCombo[i]
         return dict
+    
+    ##Combo boxes set value
+    def setComboValues(self):
+        #TODO
+        pragma = dbGetID(self.dbName)
+        for i in range(len(pragma)):
+            self.childrenDict[0].addItem(pragma[i][1])
+
+        self.childrenDict[0].addItem("")
+        for j in range(len(self.tableColumns)):
+            self.childrenDict[0].addItem(str(pragma[j][1]))
+
+        self.childrenDict[1].addItem("")
+        self.childrenDict[1].addItem("ASC")
+        self.childrenDict[1].addItem("DESC")
+        print(self.tableColumns)
+
+
 
         
                     
