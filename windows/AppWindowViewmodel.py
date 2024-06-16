@@ -30,11 +30,11 @@ class AppWindowViewmodel(QMainWindow):
         
         
         #tab Managers initialization
-        self.employeeTabManager = Tab.Tab(self.employeesTable)
+        self.employeeTabManager = Tab.Tab(self.employeesTable, "", )
         self.machineTabManager = Tab.Tab(self.machineTable)
         self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')")
         self.currentTasksTabManager = Tab.Tab(self.currentTasksTable, "WHERE doneDate <= DATE('now')")
-        self.partsTabManager = Tab.Tab(self.partsTable)
+        self.partsTabManager = Tab.Tab(self.partsTable, "", self.tab_3.findChildren(QtWidgets.QLabel))
         
         
         
@@ -72,7 +72,14 @@ class AppWindowViewmodel(QMainWindow):
 
         self.mainTab.currentChanged.connect(self.tabChanged)
 
-        self.partsNameSearchButton.clicked.connect(self.searchParts)
+        self.partsNameSearch.textChanged.connect(self.searchParts)
+        self.partsSortByNames.clicked.connect(self.sortBy)
+
+        #print(self.tab_3.findChildren(QtWidgets.QComboBox).objectName())
+
+        for name in self.tab_3.findChildren(QtWidgets.QLabel):
+            print(name.objectName())
+
 
         
         
@@ -127,7 +134,8 @@ class AppWindowViewmodel(QMainWindow):
         
         
   ##edit to do
-  
+    def sortBy(self):
+        self.partsTabManager.sortBy("name")
         
          
         

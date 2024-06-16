@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
@@ -12,16 +12,19 @@ import dbEnum
 
 class Tab():
     
-    def __init__(self, table = None, arguments = ""):
+    def __init__(self, table = None, arguments = "", children = None):
         
         self.table = table
         self.arguments = arguments
         self.content = None
-        self.selectedRow = None
-        self.selectedColumn = None
+        self.childrenCombo = children 
+        self.childrenDict = self.childrenComboToDict()
+        print(self.childrenDict)
+
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
         #self.table.cellClicked.connect(self.cellWasClicked)
         self.table.itemChanged.connect(self.editRecord)
+        self.sortASCOrder = None
         
         self.count = 0
 
@@ -67,9 +70,27 @@ class Tab():
     
 
     def searchByName(self, name):
-        print(name)
+        
         self.content = dbExtract(f"{self.dbName}", "*", f" WHERE name LIKE '%{name}%'")
         self.loadTab()
+
+    def sortBy(self, column):
+        if self.sortASCOrder != True:
+            self.sortASCOrder = True
+            self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} ASC")
+        else:
+            self.sortASCOrder = False
+            self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} DESC")
+        self.loadTab()
+
+
+    def childrenComboToDict(self):
+        dict = {}
+        for i in range(self.childrenCombo.count()):
+            dict[self.childrenCombo.objectName(i)] = self.childrenCombo.itemData(i)
+        return dict
+
+        
                     
             
 
