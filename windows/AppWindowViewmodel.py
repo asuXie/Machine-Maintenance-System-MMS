@@ -6,7 +6,8 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap
 from datetime import datetime
 from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel, AddPartViewmodel
-from databaseAcces import dbExecute, dbExtract
+from databaseAcces import dbExecute, dbExtract, dbGetID
+from dbEnum import dbEnum
 from tabs import Tab
 
 
@@ -30,12 +31,12 @@ class AppWindowViewmodel(QMainWindow):
         
         
         #tab Managers initialization
-        self.employeeTabManager = Tab.Tab(self.employeesTable, "", self.tab.findChildren(QtWidgets.QComboBox))
-        self.machineTabManager = Tab.Tab(self.machineTable, "", self.tab_2.findChildren(QtWidgets.QComboBox))
-        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')", self.tab_4.findChildren(QtWidgets.QComboBox))
+        self.employeeTabManager = Tab.Tab(self.employeesTable, "")
+        self.machineTabManager = Tab.Tab(self.machineTable, "")
+        self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')")
         self.currentTasksTabManager = Tab.Tab(self.currentTasksTable, "WHERE doneDate <= DATE('now')")
         
-        self.partsTabManager = Tab.Tab(self.partsTable, "", self.tab_3.findChildren(QtWidgets.QComboBox))
+        self.partsTabManager = Tab.Tab(self.partsTable, "")
         
         
         
@@ -76,11 +77,14 @@ class AppWindowViewmodel(QMainWindow):
         self.partsNameSearch.textChanged.connect(self.searchParts)
         self.partsSortByNames.clicked.connect(self.sortBy)
 
-        #print(self.tab_3.findChildren(QtWidgets.QComboBox).objectName())
+        ###################
+        #COMBOBOXES       #
+        ###################
+        self.fillComboBoxes((self.sortWhatComboParts, self.sortByComboParts), self.partsTable)
+       
+        self.sortByComboParts.currentIndexChanged.connect(self.sortBy)
 
-        #for name in self.tab_3.findChildren(QtWidgets.QLabel):
-        #    print(name.objectName())
-
+      
 
         
         
@@ -135,8 +139,26 @@ class AppWindowViewmodel(QMainWindow):
         
         
   ##edit to do
+    #def sortBy(self):
+    #    self.partsTabManager.sortBy("name")
+
+
+    def fillComboBoxes(self, comboBoxes, table):
+        comboBoxes[0].addItem("")
+        dbName = str(dbEnum[table.objectName()].value)
+        pragma = dbGetID(dbName)
+        for i in range(len(pragma)):
+            comboBoxes[0].addItem(pragma[i][1])
+        
+        comboBoxes[1].addItem("")
+        comboBoxes[1].addItem("Ascending")
+        comboBoxes[1].addItem("Descending")
+
     def sortBy(self):
-        self.partsTabManager.sortBy("name")
+        self.partsTabManager.sortBy(self.sortWhatComboParts.currentText(), self.sortByComboParts.currentText())
+        
+
+        
         
          
         

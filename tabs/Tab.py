@@ -12,19 +12,14 @@ import dbEnum
 
 class Tab():
     
-    def __init__(self, table = None, arguments = "", children = None):
+    def __init__(self, table = None, arguments = ""):
         
         self.table = table
         self.arguments = arguments
         self.content = None
-        self.childrenCombo = children 
-        if self.childrenCombo != None:
-            self.childrenDict = self.childrenComboToDict()
-            for i in self.childrenDict:
-                print(self.childrenDict[i])
+        self.comboBoxes = ()
 
         self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
-        #self.table.cellClicked.connect(self.cellWasClicked)
         self.table.itemChanged.connect(self.editRecord)
         self.sortASCOrder = None
         self.tableColumns = None
@@ -76,40 +71,21 @@ class Tab():
         self.content = dbExtract(f"{self.dbName}", "*", f" WHERE name LIKE '%{name}%'")
         self.loadTab()
 
-    def sortBy(self, column):
-        if self.sortASCOrder != True:
-            self.sortASCOrder = True
-            self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} ASC")
+    def sortBy(self, column, order):
+        if column != None and order != None and column != "" and order != "":
+            if order == "Ascending":
+                self.sortASCOrder = True
+                self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} ASC")
+                self.loadTab()
+            if order == "Descending":
+                self.sortASCOrder = False
+                self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} DESC")
+                self.loadTab()
         else:
-            self.sortASCOrder = False
-            self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments} ORDER BY {column} DESC")
-        self.loadTab()
+            self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
+            self.loadTab()
 
-
-    def childrenComboToDict(self):
-        
-        dict = {}
-        for i in range(len(self.childrenCombo)):
-            dict[self.childrenCombo[i].objectName()] = self.childrenCombo[i]
-        return dict
     
-    ##Combo boxes set value
-    def setComboValues(self):
-        #TODO
-        pragma = dbGetID(self.dbName)
-        for i in range(len(pragma)):
-            self.childrenDict[0].addItem(pragma[i][1])
-
-        self.childrenDict[0].addItem("")
-        for j in range(len(self.tableColumns)):
-            self.childrenDict[0].addItem(str(pragma[j][1]))
-
-        self.childrenDict[1].addItem("")
-        self.childrenDict[1].addItem("ASC")
-        self.childrenDict[1].addItem("DESC")
-        print(self.tableColumns)
-
-
 
         
                     
