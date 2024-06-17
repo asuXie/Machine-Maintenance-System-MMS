@@ -81,8 +81,16 @@ class AppWindowViewmodel(QMainWindow):
         #COMBOBOXES       #
         ###################
         self.fillComboBoxes((self.sortWhatComboParts, self.sortByComboParts), self.partsTable)
-       
-        self.sortByComboParts.currentIndexChanged.connect(self.sortBy)
+        self.sortByComboParts.currentIndexChanged.connect(self.sortBy(self.partsTabManager))
+
+        self.fillComboBoxes((self.sortWhatComboMachines, self.sortByComboMachines), self.machineTable)
+        self.sortByComboMachines.currentIndexChanged.connect(self.sortBy(self.machineTabManager))
+
+        self.fillComboBoxes((self.sortWhatComboEmployees, self.sortByComboEmployees), self.employeesTable)
+        self.sortByComboEmployees.currentIndexChanged.connect(self.sortBy(self.employeeTabManager))
+
+        self.fillComboBoxes((self.sortWhatComboMaintenance, self.sortByComboMaintenance), self.plannedTasksTable)
+        self.sortByComboMaintenance.currentIndexChanged.connect(self.sortBy(self.plannedTasksTabManager))
 
       
 
@@ -153,9 +161,9 @@ class AppWindowViewmodel(QMainWindow):
         comboBoxes[1].addItem("")
         comboBoxes[1].addItem("Ascending")
         comboBoxes[1].addItem("Descending")
-
-    def sortBy(self):
-        self.partsTabManager.sortBy(self.sortWhatComboParts.currentText(), self.sortByComboParts.currentText())
+#todo
+    def sortBy(self, manager, comboBoxe):
+        manager.sortBy(self.sortWhatComboParts.currentText(), self.sortByComboParts.currentText())
         
 
         
