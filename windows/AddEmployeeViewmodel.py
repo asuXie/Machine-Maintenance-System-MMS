@@ -23,6 +23,7 @@ class AddEmployeeViewmodel(QDialog):
     def addEmployee(self):
         command = f"INSERT INTO employees (name, surname, isOperator) VALUES ('{self.addEmployeeNameField.text()}', '{self.addEmployeeSurnameField.text()}', False)"
         dbExecute(command)
+        self.manager.extractData()
         self.manager.loadTab()
         self.close()
         return True

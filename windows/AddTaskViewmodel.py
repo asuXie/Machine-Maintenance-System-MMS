@@ -38,6 +38,7 @@ class AddTaskViewmodel(QDialog):
         dateString = dateIso.split("T")[0]
         command = f"INSERT INTO tasks (type, machineID, part, description, doneDate) VALUES ('{self.typeCombo.currentText()}', {int(self.machineCombo.currentText())}, '{self.partsCombo.currentText()}', '{self.descriptionField.toPlainText()}', '{dateString}')"
         dbExecute(command)
+        self.manager.extractData()
         self.manager.loadTab()
         self.secondManager.loadTab()
         self.close()

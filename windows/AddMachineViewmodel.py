@@ -37,6 +37,7 @@ class AddMachineViewmodel(QDialog):
        command = f"INSERT INTO machine (model, reqMaintenance, operatorID) VALUES ('{self.machineModelField.text()}', '{dateString}', {self.machineOperatorField.text()})"
        print(command)
        dbExecute(command)
+       self.manager.extractData()
        self.manager.loadTab()
        self.close()
 

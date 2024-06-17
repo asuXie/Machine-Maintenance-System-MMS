@@ -29,7 +29,9 @@ class Tab():
         
         self.loadTab()
 
-
+    def extractData(self):
+        self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
+        
 
     def loadTab(self):
         
@@ -52,6 +54,7 @@ class Tab():
                 command = f"DELETE FROM {self.dbName} WHERE {getID[0][1]} = '{id}'"
             
             dbExecute(command)
+            self.extractData()
             self.loadTab()
 
     def editRecord(self):
@@ -63,6 +66,7 @@ class Tab():
         if self.table.item(row, column)!= None:
             command = f"UPDATE {self.dbName} SET {getID[column][1]} = '{self.table.item(row, column).text()}' WHERE {getID[0][1]} = '{self.table.item(row, 0).text()}'"
             dbExecute(command)
+            self.extractData()
 
     
 

@@ -75,22 +75,22 @@ class AppWindowViewmodel(QMainWindow):
         self.mainTab.currentChanged.connect(self.tabChanged)
 
         self.partsNameSearch.textChanged.connect(self.searchParts)
-        self.partsSortByNames.clicked.connect(self.sortBy)
+        #self.partsSortByNames.clicked.connect(self.sortBy)
 
         ###################
         #COMBOBOXES       #
         ###################
         self.fillComboBoxes((self.sortWhatComboParts, self.sortByComboParts), self.partsTable)
-        self.sortByComboParts.currentIndexChanged.connect(self.sortBy(self.partsTabManager))
+        self.sortByComboParts.currentIndexChanged.connect(self.sortByParts)
 
         self.fillComboBoxes((self.sortWhatComboMachines, self.sortByComboMachines), self.machineTable)
-        self.sortByComboMachines.currentIndexChanged.connect(self.sortBy(self.machineTabManager))
+        self.sortByComboMachines.currentIndexChanged.connect(self.sortByMachines)
 
         self.fillComboBoxes((self.sortWhatComboEmployees, self.sortByComboEmployees), self.employeesTable)
-        self.sortByComboEmployees.currentIndexChanged.connect(self.sortBy(self.employeeTabManager))
+        self.sortByComboEmployees.currentIndexChanged.connect(self.sortByEmployees)
 
         self.fillComboBoxes((self.sortWhatComboMaintenance, self.sortByComboMaintenance), self.plannedTasksTable)
-        self.sortByComboMaintenance.currentIndexChanged.connect(self.sortBy(self.plannedTasksTabManager))
+        self.sortByComboMaintenance.currentIndexChanged.connect(self.sortByMaintenance)
 
       
 
@@ -103,13 +103,17 @@ class AppWindowViewmodel(QMainWindow):
         match index:
             
             case 2:
+                self.employeeTabManager.extractData()
                 self.employeeTabManager.loadTab()
             case 1:
+                self.machineTabManager.extractData()
                 self.machineTabManager.loadTab()
             case 0:
+                self.employeeTabManager.extractData()
                 self.plannedTasksTabManager.loadTab()
                 self.currentTasksTabManager.loadTab()
             case 3:
+                self.partsTabManager.extractData()
                 self.partsTabManager.loadTab()
 
     def showTime(self):
@@ -162,8 +166,21 @@ class AppWindowViewmodel(QMainWindow):
         comboBoxes[1].addItem("Ascending")
         comboBoxes[1].addItem("Descending")
 #todo
-    def sortBy(self, manager, comboBoxe):
-        manager.sortBy(self.sortWhatComboParts.currentText(), self.sortByComboParts.currentText())
+    def sortByParts(self):
+        comboBoxes = (self.sortWhatComboParts, self.sortByComboParts)
+        self.partsTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
+
+    def sortByMachines(self):
+        comboBoxes = (self.sortWhatComboMachines, self.sortByComboMachines)
+        self.machineTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
+
+    def sortByEmployees(self):
+        comboBoxes = (self.sortWhatComboEmployees, self.sortByComboEmployees)
+        self.employeeTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
+    
+    def sortByMaintenance(self):
+        comboBoxes = (self.sortWhatComboMaintenance, self.sortByComboMaintenance)
+        self.plannedTasksTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
         
 
         

@@ -23,6 +23,7 @@ class AddPartViewmodel(QDialog):
     def addPart(self):
         command = f"INSERT INTO parts (name, price, stock) VALUES ('{self.dialogPartNameField.text()}', {float(self.dialogPartPriceField.text())}, {int(self.dialogPartStockField.value())})"
         dbExecute(command)
+        self.manager.extractData()
         self.manager.loadTab()
         self.close()
 

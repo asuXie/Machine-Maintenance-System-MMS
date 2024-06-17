@@ -43,7 +43,7 @@ QTabBar::tab {
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -395,7 +395,7 @@ background-color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>950</x>
-        <y>270</y>
+        <y>300</y>
         <width>191</width>
         <height>21</height>
        </rect>
@@ -413,7 +413,7 @@ background-color: rgb(181, 181, 181);</string>
       <property name="geometry">
        <rect>
         <x>950</x>
-        <y>300</y>
+        <y>370</y>
         <width>191</width>
         <height>21</height>
        </rect>
@@ -425,6 +425,52 @@ selection-color: rgb(0, 0, 0);
 font: 10pt &quot;Verdana&quot;;
 border-radius: 10px;
 background-color: rgb(181, 181, 181);</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>270</y>
+        <width>261</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+
+background-color: rgb(96, 96, 96);
+
+color: rgb(255, 255, 255); 
+font: 16pt &quot;Verdana&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Sorty by:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>340</y>
+        <width>261</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+border-color: rgb(96, 96, 96);
+selection-color: rgb(0, 0, 0);
+
+background-color: rgb(96, 96, 96);
+
+color: rgb(255, 255, 255); 
+font: 16pt &quot;Verdana&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Order:</string>
       </property>
      </widget>
     </widget>
