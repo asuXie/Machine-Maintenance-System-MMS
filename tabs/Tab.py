@@ -70,9 +70,9 @@ class Tab():
 
     
 
-    def searchByName(self, name):
+    def searchByName(self, name, column):
         
-        self.content = dbExtract(f"{self.dbName}", "*", f" WHERE name LIKE '%{name}%'")
+        self.content = dbExtract(f"{self.dbName}", "*", f" WHERE {column} LIKE '%{name}%'")
         self.loadTab()
 
     def sortBy(self, column, order):

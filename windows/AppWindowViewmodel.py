@@ -75,6 +75,9 @@ class AppWindowViewmodel(QMainWindow):
         self.mainTab.currentChanged.connect(self.tabChanged)
 
         self.partsNameSearch.textChanged.connect(self.searchParts)
+        self.machinesNameSearch.textChanged.connect(self.searchMachines)
+        self.employeeSurnameSearch.textChanged.connect(self.searchEmployees)
+        self.plannedTasksNameSearch.textChanged.connect(self.searchPlannedTasks)
         #self.partsSortByNames.clicked.connect(self.sortBy)
 
         ###################
@@ -147,7 +150,18 @@ class AppWindowViewmodel(QMainWindow):
         
 
     def searchParts(self):
-        self.partsTabManager.searchByName(self.partsNameSearch.text())
+        self.partsTabManager.searchByName(self.partsNameSearch.text(), 'name')
+
+    def searchMachines(self):
+        self.machineTabManager.searchByName(self.machinesNameSearch.text(), 'model')
+
+    def searchEmployees(self):
+        self.employeeTabManager.searchByName(self.employeeSurnameSearch.text(), 'surname')
+
+    def searchPlannedTasks(self):
+        self.plannedTasksTabManager.searchByName(self.plannedTasksNameSearch.text(), 'machineID')
+
+        
         
         
   ##edit to do
