@@ -1,5 +1,7 @@
 import sqlite3
 from sqlite3 import Error
+from PyQt5.QtWidgets import QFileDialog
+import csv
 
         
 
@@ -69,6 +71,15 @@ def dbGetID(table):
     conn.close()
 
     return rows
+
+def importData(table, columns, filePath):
+    conn = create_connection("base.db")
+    cursor = conn.cursor()
+    command = f"INSERT INTO {table} {columns} VALUES"
+
+   
+        
+
 
 
 

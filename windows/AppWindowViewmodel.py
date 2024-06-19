@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap
@@ -9,6 +9,7 @@ from windows import AddEmployeeViewmodel, AddMachineViewmodel, AddTaskViewmodel,
 from databaseAcces import dbExecute, dbExtract, dbGetID
 from dbEnum import dbEnum
 from tabs import Tab
+import csv
 
 
 ####################
@@ -40,19 +41,7 @@ class AppWindowViewmodel(QMainWindow):
         
         
         
-        #displaying table
-        self.machineTable.setColumnWidth(0, 200)
-        self.machineTable.setColumnWidth(1, 200)
-        self.machineTable.setColumnWidth(2, 200)
-        self.machineTable.setColumnWidth(3, 200)
-        self.machineTable.setColumnWidth(4, 200)
-        self.machineTable.setColumnWidth(5, 200)
-        self.machineTable.setColumnWidth(6, 200)
-
-        self.employeesTable.setColumnWidth(0, 200)
-        self.employeesTable.setColumnWidth(1, 200)
-        self.employeesTable.setColumnWidth(2, 200)
-        self.employeesTable.setColumnWidth(3, 200)
+        
         
 
         
@@ -78,7 +67,9 @@ class AppWindowViewmodel(QMainWindow):
         self.machinesNameSearch.textChanged.connect(self.searchMachines)
         self.employeeSurnameSearch.textChanged.connect(self.searchEmployees)
         self.plannedTasksNameSearch.textChanged.connect(self.searchPlannedTasks)
-        #self.partsSortByNames.clicked.connect(self.sortBy)
+
+        self.browseEmployees.clicked.connect(self.browseFiles)
+        
 
         ###################
         #COMBOBOXES       #
@@ -99,7 +90,11 @@ class AppWindowViewmodel(QMainWindow):
 
         
         
-        
+    def browseFiles(self):
+        name = QFileDialog.getOpenFileName(self, 'Open File', 'C:\\', 'CSV Files (*.csv)')
+        file = open(name[0], 'r')    
+        content = csv.reader(file)
+        return content
         
     
     def tabChanged(self, index):
@@ -164,10 +159,7 @@ class AppWindowViewmodel(QMainWindow):
         
         
         
-  ##edit to do
-    #def sortBy(self):
-    #    self.partsTabManager.sortBy("name")
-
+  
 
     def fillComboBoxes(self, comboBoxes, table):
         comboBoxes[0].addItem("")
@@ -179,7 +171,7 @@ class AppWindowViewmodel(QMainWindow):
         comboBoxes[1].addItem("")
         comboBoxes[1].addItem("Ascending")
         comboBoxes[1].addItem("Descending")
-#todo
+
     def sortByParts(self):
         comboBoxes = (self.sortWhatComboParts, self.sortByComboParts)
         self.partsTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
@@ -195,6 +187,10 @@ class AppWindowViewmodel(QMainWindow):
     def sortByMaintenance(self):
         comboBoxes = (self.sortWhatComboMaintenance, self.sortByComboMaintenance)
         self.plannedTasksTabManager.sortBy(comboBoxes[0].currentText(), comboBoxes[1].currentText())
+
+    def employeesCSV(self):
+        content = self.browseFiles()
+        content = csv.reader(content)
         
 
         
