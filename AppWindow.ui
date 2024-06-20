@@ -1069,7 +1069,7 @@ font: 16pt &quot;Verdana&quot;;</string>
        <string>Import by CSV</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="employeeSurnameSearch_2">
+     <widget class="QLineEdit" name="browsedEmployeesField">
       <property name="geometry">
        <rect>
         <x>820</x>

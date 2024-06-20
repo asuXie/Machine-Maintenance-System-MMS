@@ -1,12 +1,13 @@
 import sys
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget, QFileDialog
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from datetime import datetime
-from databaseAcces import dbExecute, dbExtract, dbGetID
+from databaseAcces import dbExecute, dbExtract, dbGetID, importData
 from tabs import Tab
 from windows import AddEmployeeViewmodel
+import csv
 import dbEnum
 
 
@@ -19,7 +20,7 @@ class Tab():
         self.content = None
         self.comboBoxes = ()
 
-        self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value)
+        self.dbName = str(dbEnum.dbEnum[self.table.objectName()].value[0])
         self.table.itemChanged.connect(self.editRecord)
         self.sortASCOrder = None
         self.tableColumns = None
@@ -88,6 +89,19 @@ class Tab():
         else:
             self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
             self.loadTab()
+
+    def browseFiles(self):
+        self.file = QFileDialog.getOpenFileName(None, 'Open File', 'C:\\', 'CSV Files (*.csv)')
+        file = open(self.file[0], 'r')    
+        content = csv.reader(file)
+        #print(",".join(["?"]*4))
+        importData(self.dbName, dbEnum.dbEnum[self.table.objectName()].value[1], content)
+        self.extractData()
+        self.loadTab()
+
+
+        
+        
 
     
 

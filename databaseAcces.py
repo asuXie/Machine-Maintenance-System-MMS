@@ -72,10 +72,15 @@ def dbGetID(table):
 
     return rows
 
-def importData(table, columns, filePath):
+def importData(table, columns, content):
+    print(content)
     conn = create_connection("base.db")
     cursor = conn.cursor()
-    command = f"INSERT INTO {table} {columns} VALUES"
+    command = f"INSERT INTO {table} ({columns}) VALUES ({','.join(["?"]*len(columns.split(',')))})"
+    cursor.executemany(command, content)
+    conn.commit()
+    conn.close()
+    print("done")
 
    
         

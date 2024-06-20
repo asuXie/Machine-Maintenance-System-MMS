@@ -68,7 +68,10 @@ class AppWindowViewmodel(QMainWindow):
         self.employeeSurnameSearch.textChanged.connect(self.searchEmployees)
         self.plannedTasksNameSearch.textChanged.connect(self.searchPlannedTasks)
 
-        self.browseEmployees.clicked.connect(self.browseFiles)
+        self.browseEmployees.clicked.connect(self.employeeTabManager.browseFiles)
+        self.browseMachines.clicked.connect(self.machineTabManager.browseFiles)
+        self.browseTasks.clicked.connect(self.plannedTasksTabManager.browseFiles)
+        self.browseParts.clicked.connect(self.partsTabManager.browseFiles)
         
 
         ###################
@@ -90,11 +93,7 @@ class AppWindowViewmodel(QMainWindow):
 
         
         
-    def browseFiles(self):
-        name = QFileDialog.getOpenFileName(self, 'Open File', 'C:\\', 'CSV Files (*.csv)')
-        file = open(name[0], 'r')    
-        content = csv.reader(file)
-        return content
+    
         
     
     def tabChanged(self, index):
@@ -163,7 +162,7 @@ class AppWindowViewmodel(QMainWindow):
 
     def fillComboBoxes(self, comboBoxes, table):
         comboBoxes[0].addItem("")
-        dbName = str(dbEnum[table.objectName()].value)
+        dbName = str(dbEnum[table.objectName()].value[0])
         pragma = dbGetID(dbName)
         for i in range(len(pragma)):
             comboBoxes[0].addItem(pragma[i][1])

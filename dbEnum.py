@@ -3,9 +3,9 @@
 from enum import Enum
 
 class dbEnum(Enum):
-    employeesTable = "employees"
-    machineTable = "machine"
-    plannedTasksTable = "tasks"
-    currentTasksTable = "tasks"
-    partsTable = "parts"
+    employeesTable = ("employees","name, surname, isOperator")
+    machineTable = ("machine", "model, reqMaintenance, operatorID")
+    plannedTasksTable = ("tasks", "type, machineID, description, doneDate, part")
+    currentTasksTable = ("tasks", "")
+    partsTable = ("parts", "name, price, stock")
     
