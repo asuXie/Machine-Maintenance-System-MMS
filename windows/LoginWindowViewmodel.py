@@ -1,13 +1,13 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
+from PyQt5.QtWidgets import QMainWindow
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap
 from windows import AppWindowViewmodel
-from databaseAcces import create_connection, extract_users
-#from main import widget
+from databaseAcces import extract_users
 
 
+#klasa okna logowania
  
 
 class LoginWindowViewmodel(QMainWindow):
@@ -23,7 +23,7 @@ class LoginWindowViewmodel(QMainWindow):
         self.widget = widget
 
       
-        
+    #logowanie        
 
     def loginFunction(self):
 

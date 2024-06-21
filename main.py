@@ -18,6 +18,7 @@ from sqlite3 import Error
 #codzienne/okresowe
 
 
+
         
 
 

@@ -1,12 +1,8 @@
-import sys
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QTabWidget, QFileDialog
-from PyQt5.uic import loadUi
-from PyQt5.QtCore import QTimer
-from datetime import datetime
+
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QFileDialog
 from databaseAcces import dbExecute, dbExtract, dbGetID, importData
 from tabs import Tab
-from windows import AddEmployeeViewmodel
 import csv
 import dbEnum
 
@@ -29,10 +25,13 @@ class Tab():
         self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
         
         self.loadTab()
+    
+    #ekstrakcja danych z bazy
 
     def extractData(self):
         self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
         
+    #ładowanie danych do tabeli
 
     def loadTab(self):
         
@@ -44,9 +43,12 @@ class Tab():
                     self.table.setItem(i, j, QtWidgets.QTableWidgetItem(str(self.content[i][j])))
                     
             self.table.resizeColumnsToContents()
+    
+    #usuwanie rekordu z bazy
 
     def deleteRecord(self):
-        if self.table.currentRow() != None or self.table.currentRow().text() != None:
+       
+        if self.table.currentRow() != None and self.table.currentRow() >= 0:
             id = self.table.item(self.table.currentRow(), 0).text()
             getID = dbGetID(self.dbName)
             if self.dbName != "parts":
@@ -57,6 +59,8 @@ class Tab():
             dbExecute(command)
             self.extractData()
             self.loadTab()
+    
+    #edycja rekordu w bazie
 
     def editRecord(self):
        
@@ -70,6 +74,7 @@ class Tab():
             self.extractData()
 
     
+    #szukanie rekordu po nazwie
 
     def searchByName(self, name, column):
         
@@ -90,14 +95,17 @@ class Tab():
             self.content = dbExtract(f"{self.dbName}", "*", f" {self.arguments}")
             self.loadTab()
 
+    #import danych z pliku csv
+
     def browseFiles(self):
         self.file = QFileDialog.getOpenFileName(None, 'Open File', 'C:\\', 'CSV Files (*.csv)')
-        file = open(self.file[0], 'r')    
-        content = csv.reader(file)
-        #print(",".join(["?"]*4))
-        importData(self.dbName, dbEnum.dbEnum[self.table.objectName()].value[1], content)
-        self.extractData()
-        self.loadTab()
+        if self.file[0] != "":
+            file = open(self.file[0], 'r')    
+            content = csv.reader(file)
+            #print(",".join(["?"]*4))
+            importData(self.dbName, dbEnum.dbEnum[self.table.objectName()].value[1], content)
+            self.extractData()
+            self.loadTab()
 
 
         

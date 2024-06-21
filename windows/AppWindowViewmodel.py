@@ -1,6 +1,5 @@
-import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+
+from PyQt5.QtWidgets import QMainWindow
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QPixmap
@@ -12,9 +11,7 @@ from tabs import Tab
 import csv
 
 
-####################
-#  INITIALIZATION  #
-####################        
+#klasa okna głównego     
         
 
 
@@ -25,18 +22,17 @@ class AppWindowViewmodel(QMainWindow):
         self.pixmap = QPixmap('LOGO INSIDE.png')
         self.insideLabel.setPixmap(self.pixmap)
         
-        #displaying time
+        #wyświetlanie czasu
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.showTime)
         self.timer.start(1000)
         
         
-        #tab Managers initialization
+        #inicjalizacja managerów zakładek
         self.employeeTabManager = Tab.Tab(self.employeesTable, "")
         self.machineTabManager = Tab.Tab(self.machineTable, "")
         self.plannedTasksTabManager = Tab.Tab(self.plannedTasksTable, "WHERE doneDate > DATE('now')")
         self.currentTasksTabManager = Tab.Tab(self.currentTasksTable, "WHERE doneDate <= DATE('now')")
-        
         self.partsTabManager = Tab.Tab(self.partsTable, "")
         
         
@@ -46,7 +42,7 @@ class AppWindowViewmodel(QMainWindow):
 
         
 
-        #button initialization
+        #przypisywanie funkcji do przycisków
         self.addEmployeeButton.clicked.connect(self.addEmployeeWindow)
         self.deleteEmployeeButton.clicked.connect(self.employeeTabManager.deleteRecord)
 
@@ -77,6 +73,9 @@ class AppWindowViewmodel(QMainWindow):
         ###################
         #COMBOBOXES       #
         ###################
+
+        #wypełnianie comboboxów i sortowanie
+
         self.fillComboBoxes((self.sortWhatComboParts, self.sortByComboParts), self.partsTable)
         self.sortByComboParts.currentIndexChanged.connect(self.sortByParts)
 
@@ -94,7 +93,7 @@ class AppWindowViewmodel(QMainWindow):
         
         
     
-        
+    #zmiana i odświeżanie zakładek    
     
     def tabChanged(self, index):
         match index:
@@ -113,14 +112,18 @@ class AppWindowViewmodel(QMainWindow):
                 self.partsTabManager.extractData()
                 self.partsTabManager.loadTab()
 
+    #wyświetlanie czasu
+    
     def showTime(self):
         time = datetime.now()
         self.dateTimeLabel.setText(time.strftime("%d/%m/%Y %H:%M:%S"))
     
 
     ########################
-    ###WINDOW   FUNCTIONS###
+    ###FUNKCJE OKIENKOWE####
     ########################
+
+    #funkcje okienkowe dodwania rekordów
 
     def addEmployeeWindow(self):
         self.addEmployee = AddEmployeeViewmodel.AddEmployeeViewmodel(self.employeeTabManager)
@@ -143,6 +146,8 @@ class AppWindowViewmodel(QMainWindow):
         self.addPart.exec_()
         
 
+    #funkcje wyszukiwania
+    
     def searchParts(self):
         self.partsTabManager.searchByName(self.partsNameSearch.text(), 'name')
 
@@ -157,8 +162,11 @@ class AppWindowViewmodel(QMainWindow):
 
         
         
-        
-  
+    ####################    
+    #funkcje sortowania#
+    ####################
+
+    #wypełnianie comboboxów
 
     def fillComboBoxes(self, comboBoxes, table):
         comboBoxes[0].addItem("")
@@ -170,6 +178,8 @@ class AppWindowViewmodel(QMainWindow):
         comboBoxes[1].addItem("")
         comboBoxes[1].addItem("Ascending")
         comboBoxes[1].addItem("Descending")
+
+    #sortowanie
 
     def sortByParts(self):
         comboBoxes = (self.sortWhatComboParts, self.sortByComboParts)

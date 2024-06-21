@@ -1,6 +1,5 @@
-import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
+
+from PyQt5.QtWidgets import QDialog
 from PyQt5.uic import loadUi
 from PyQt5.QtCore import QTimer, QDate
 from datetime import date, datetime
@@ -29,7 +28,7 @@ class AddTaskViewmodel(QDialog):
 
     
 
-
+    
         
     def addTask(self):
         selectedDate = self.doneTaskCalendar.selectedDate()
