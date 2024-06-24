@@ -39,6 +39,7 @@ class AddTaskViewmodel(QDialog):
         dbExecute(command)
         self.manager.extractData()
         self.manager.loadTab()
+        self.secondManager.extractData()
         self.secondManager.loadTab()
         self.close()
 
